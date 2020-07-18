@@ -1,5 +1,7 @@
 ﻿using PixelEngine;
 
+using static GooManGame.Utilities;
+
 namespace GooManGame {
     public class UIElement {
         public UI owner;
@@ -56,7 +58,7 @@ namespace GooManGame {
         public virtual void Update() {
             if (MouseHovering) SwitchTo(this);
 
-            if (!owner.switchedThisFrame && owner.currentlySelected == this) 
+            if (!owner.switchedThisFrame && owner.currentlySelected == this)
                 if (IO.InputInState("up", InputState.JustPressed)) SwitchTo(above ?? this);
                 else if (IO.InputInState("down", InputState.JustPressed)) SwitchTo(below ?? this);
                 else if (IO.InputInState("left", InputState.JustPressed)) SwitchTo(left ?? this);
@@ -77,6 +79,7 @@ namespace GooManGame {
                 Game.Instance.FillRect(new Point(x, y), width, height, inactiveBackground);
                 Game.Instance.DrawText(new Point(x, y), text, inactiveText);
             }
+            Game.Instance.DrawSprite(point(x, y), AssetManager.GetSprite(assetName));
         }
     }
 }

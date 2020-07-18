@@ -7,6 +7,11 @@ namespace GooManGame.States {
     public class PlayState : GameState {
         public override string Name => "Play State";
 
+        public override string[] OwnedAssets =>
+            new string[] {
+            
+            };
+
         public PlayState() : base(true, true, true, true) { }
 
         public override void OnLoad() {

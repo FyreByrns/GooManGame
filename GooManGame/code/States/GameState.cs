@@ -4,6 +4,7 @@
     /// </summary>
     public abstract class GameState {
         public abstract string Name { get; }
+        public abstract string[] OwnedAssets { get; }
         public GameState NextState { get; set; }
         public bool loaded = false;
 

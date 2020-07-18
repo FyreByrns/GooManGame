@@ -48,37 +48,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Camera.cs" />
-    <Compile Include="Entities\Crawler.cs" />
-    <Compile Include="IO\AssetManager.cs" />
-    <Compile Include="IO\Debug.cs" />
-    <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\EntityCollection.cs" />
-    <Compile Include="Entities\EntityExtensions.cs" />
-    <Compile Include="Level.cs" />
-    <Compile Include="States\GameState.cs" />
-    <Compile Include="IO\IO.cs" />
-    <Compile Include="Base\Game.cs" />
-    <Compile Include="Entities\Limb.cs" />
-    <Compile Include="Base\Utilities.cs" />
-    <Compile Include="Base\Matrix.cs" />
-    <Compile Include="States\IOwnedByAState.cs" />
-    <Compile Include="States\LevelEditorState.cs" />
-    <Compile Include="States\MenuState.cs" />
-    <Compile Include="Entities\Player.cs" />
-    <Compile Include="States\PlayState.cs" />
-    <Compile Include="Base\Program.cs" />
+    <Compile Include="code\Entities\Camera.cs" />
+    <Compile Include="code\Entities\Crawler.cs" />
+    <Compile Include="code\IO\AssetManager.cs" />
+    <Compile Include="code\IO\Debug.cs" />
+    <Compile Include="code\Entities\Entity.cs" />
+    <Compile Include="code\Entities\EntityCollection.cs" />
+    <Compile Include="code\Entities\EntityExtensions.cs" />
+    <Compile Include="code\Level.cs" />
+    <Compile Include="code\States\GameState.cs" />
+    <Compile Include="code\IO\IO.cs" />
+    <Compile Include="code\Base\Game.cs" />
+    <Compile Include="code\Entities\Limb.cs" />
+    <Compile Include="code\Base\Utilities.cs" />
+    <Compile Include="code\Base\Matrix.cs" />
+    <Compile Include="code\States\IOwnedByAState.cs" />
+    <Compile Include="code\States\LevelEditorState.cs" />
+    <Compile Include="code\States\MenuState.cs" />
+    <Compile Include="code\Entities\Player.cs" />
+    <Compile Include="code\States\PlayState.cs" />
+    <Compile Include="code\Base\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\Segment.cs" />
-    <Compile Include="UI\UI.cs" />
-    <Compile Include="UI\UIElement.cs" />
-    <Compile Include="Base\Vector.cs" />
-    <Compile Include="Base\Vector2.cs" />
+    <Compile Include="code\Entities\Segment.cs" />
+    <Compile Include="code\UI\UI.cs" />
+    <Compile Include="code\UI\UIElement.cs" />
+    <Compile Include="code\Base\Vector.cs" />
+    <Compile Include="code\Base\Vector2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="App.config" />
-    <None Include="$(SolutionDir)assets\**" CopyToOutputDirectory="PreserveNewest" LinkBase="assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
