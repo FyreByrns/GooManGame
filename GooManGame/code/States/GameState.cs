@@ -32,9 +32,15 @@
 
         public virtual void OnLoad() {
             Debug.Raise($"{Name} loading...");
+
+            foreach (string s in OwnedAssets)
+                AssetManager.Load(s);
         }
         public virtual void OnUnload() {
             Debug.Raise($"{Name} unloading...");
+
+            foreach (string s in OwnedAssets)
+                AssetManager.Unload(s);
         }
 
         public virtual void Update(float elapsed) {
