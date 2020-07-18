@@ -22,7 +22,7 @@ namespace GooManGame {
 
         public static void Begin() {
             IO.LoadConfig();
-            AssetManager.LoadManifest();
+            AssetManager.Setup();
             Instance.Construct(IO.ScreenWidth, IO.ScreenHeight, IO.ScreenScale, IO.ScreenScale, IO.FPSLock);
             Instance.gameState = new MenuState();
             Instance.gameState.OnLoad();

@@ -18,19 +18,25 @@ namespace GooManGame {
     public static class AssetManager {
         public static string ManifestPath => IO.AssetsPath + "manifest.ini";
 
-        static Dictionary<string, Sprite> loadedSprites = new Dictionary<string, Sprite>();
         static Dictionary<string, ManifestEntry> manifest = new Dictionary<string, ManifestEntry>();
+        static Dictionary<AssetType, Dictionary<string, object>> assets = new Dictionary<AssetType, Dictionary<string, object>>();
 
         static bool NameInManifest(string name)
             => manifest.ContainsKey(name);
 
-        public static Sprite GetSprite(string assetName) {
-            if (loadedSprites.ContainsKey(assetName))
-                return loadedSprites[assetName];
-            else return null;
+        public static object Get(AssetType type, string assetName) {
+            if (assets[type].ContainsKey(assetName))
+                return assets[type][assetName];
+            return null;
         }
 
-        public static void LoadManifest() {
+        public static Sprite GetSprite(string assetName) =>
+            (Sprite)Get(AssetType.StaticSprite, assetName);
+
+        public static List<string> GetText(string assetName) =>
+            (List<string>)Get(AssetType.Text, assetName);
+
+        public static void Setup() {
             if (!File.Exists(ManifestPath))
                 File.WriteAllLines(ManifestPath,
                     new[] {
@@ -45,45 +51,45 @@ namespace GooManGame {
                 string[] contents = s.Split('|');
                 manifest[contents[0]] = new ManifestEntry((AssetType)Enum.Parse(typeof(AssetType), contents[1]), IO.AssetsPath + contents[2]);
             }
+
+            foreach (AssetType type in Enum.GetValues(typeof(AssetType)))
+                assets[type] = new Dictionary<string, object>();
         }
 
         public static void Load(string assetName) {
             if (!string.IsNullOrEmpty(assetName) && NameInManifest(assetName)) {
                 ManifestEntry assetManifest = manifest[assetName];
+                AssetType type = assetManifest.type;
 
-                switch (assetManifest.type) {
+                switch (type) {
                     case AssetType.Text:
+                        assets[type][assetName] = File.ReadAllLines(assetManifest.path);
                         break;
                     case AssetType.StaticSprite:
-                        loadedSprites[assetName] = Sprite.Load(assetManifest.path);
+                        assets[type][assetName] = Sprite.Load(assetManifest.path);
                         break;
                     default:
                         Debug.RaiseError($"Asset {assetName}'s type ({assetManifest.type}) cannot be parsed. The asset has not been loaded.");
                         break;
                 }
             }
-            else 
+            else
                 Debug.RaiseWarning($"Asset {assetName} not found in manifest. This will cause problems.");
         }
 
         public static void Unload(string assetName) {
-            if (!string.IsNullOrEmpty(assetName) && NameInManifest(assetName)) {
-                ManifestEntry assetManifest = manifest[assetName];
-
-                switch (assetManifest.type) {
-                    case AssetType.Text:
-                        break;
-                    case AssetType.StaticSprite:
-                        loadedSprites.Remove(assetName);
-                        break;
-                }
-            }
+            if (!string.IsNullOrEmpty(assetName) && NameInManifest(assetName))
+                assets[manifest[assetName].type].Remove(assetName);
             else
                 Debug.RaiseWarning($"Attempting to unload {assetName} which does not exist in manifest.");
         }
 
-        public static void Clear()
-            => loadedSprites.Clear();
+        public static void Clear() { 
+            assets.Clear();
+
+            foreach (AssetType type in Enum.GetValues(typeof(AssetType)))
+                assets[type] = new Dictionary<string, object>();
+        }
 
         /// <summary>
         /// Represents an entry into the asset manifest.
