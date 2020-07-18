@@ -57,10 +57,29 @@ namespace GooManGame {
                     case AssetType.StaticSprite:
                         loadedSprites[assetName] = Sprite.Load(assetManifest.path);
                         break;
+                    default:
+                        Debug.RaiseError($"Asset {assetName}'s type ({assetManifest.type}) cannot be parsed. The asset has not been loaded.");
+                        break;
                 }
             }
             else 
                 Debug.RaiseWarning($"Asset {assetName} not found in manifest. This will cause problems.");
+        }
+
+        public static void Unload(string assetName) {
+            if (!string.IsNullOrEmpty(assetName) && NameInManifest(assetName)) {
+                ManifestEntry assetManifest = manifest[assetName];
+
+                switch (assetManifest.type) {
+                    case AssetType.Text:
+                        break;
+                    case AssetType.StaticSprite:
+                        loadedSprites.Remove(assetName);
+                        break;
+                }
+            }
+            else
+                Debug.RaiseWarning($"Attempting to unload {assetName} which does not exist in manifest.");
         }
 
         public static void Clear()
