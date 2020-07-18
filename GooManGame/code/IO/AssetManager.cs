@@ -85,6 +85,11 @@ namespace GooManGame {
         public static void Clear()
             => loadedSprites.Clear();
 
+        /// <summary>
+        /// Represents an entry into the asset manifest.
+        /// Contains the full path relative to data/assets/ to the asset.
+        /// Contains the type of asset.
+        /// </summary>
         struct ManifestEntry {
             public AssetType type;
             public string path;
