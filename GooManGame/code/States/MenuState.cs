@@ -23,10 +23,6 @@ namespace GooManGame.States {
         public override void OnLoad() {
             base.OnLoad();
 
-            AssetManager.Load("button_play");
-            AssetManager.Load("button_leveleditor");
-            AssetManager.Load("button_quit");
-
             UIElement playButton = new UIElement(10, 10, 40, 10, "button_play");
             UIElement levelEditorButton = new UIElement(0, 0, 40, 10, "button_leveleditor");
             UIElement quitButton = new UIElement(0, 0, 40, 10, "button_quit");
@@ -49,8 +45,6 @@ namespace GooManGame.States {
 
         public override void OnUnload() {
             base.OnUnload();
-
-            AssetManager.Clear();
         }
     }
 }
