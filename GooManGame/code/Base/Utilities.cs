@@ -81,7 +81,7 @@
         public static PixelEngine.Point point(int x, int y)
             => new PixelEngine.Point(x, y);
         public static PixelEngine.Point point(float x, float y)
-            => point((int) x, (int) y);
+            => point((int)x, (int)y);
 
         #region colours
         public static PixelEngine.Pixel colour(byte r, byte g, byte b, byte a = 255)
@@ -103,5 +103,20 @@
         public static PixelEngine.Pixel halfwhite = mix(white, empty);
         public static PixelEngine.Pixel halfblack = mix(black, empty);
         #endregion colours;
+
+        #region collision
+        public static bool c_point_circle(float px, float py, float cx, float cy, float cr)
+            => dist(px, py, cx, cy) < cr;
+        public static bool c_circle_point(float cx, float cy, float cr, float px, float py)
+            => c_point_circle(px, py, cx, cy, cr);
+
+        public static bool c_point_rect(float px, float py, float rx, float ry, float rw, float rh)
+            => px > rx && py > ry && px < rx + rw && py < ry + rh;
+        public static bool c_rect_point(float rx, float ry, float rw, float rh, float px, float py)
+            => c_point_rect(px, py, rx, ry, rw, rh);
+
+        public static bool c_rect_rect(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h)
+            => r1x + r1w > r2x && r1y + r1h > r2y && r1x < r2x + r2w && r1y < r2y + r2h;
+        #endregion collision
     }
 }
