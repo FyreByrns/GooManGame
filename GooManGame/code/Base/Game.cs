@@ -34,12 +34,13 @@ namespace GooManGame {
             if (IO.InputInState("cancel", InputState.JustPressed)) Quit();
 
             if (gameState == null) Finish();
-            if (gameState.loaded) {
-                gameState.Update(elapsed);
-                gameState?.Draw();
+            else {
+                if (gameState.loaded) {
+                    gameState.Update(elapsed);
+                    gameState?.Draw();
+                }
             }
             if (gameState == null) Finish();
-
         }
 
         public void GoToNextState() {
@@ -49,7 +50,7 @@ namespace GooManGame {
         }
 
         public void Quit() {
-            gameState.OnUnload();
+            gameState?.OnUnload();
             gameState = null;
         }
     }
