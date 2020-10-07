@@ -42,9 +42,5 @@ namespace GooManGame.States {
 
             loaded = true;
         }
-
-        public override void OnUnload() {
-            base.OnUnload();
-        }
     }
 }

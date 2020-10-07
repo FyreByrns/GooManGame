@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="code\Base\Vector2.cs" />
     <Compile Include="code\Entities\Camera.cs" />
     <Compile Include="code\Entities\Crawler.cs" />
     <Compile Include="code\IO\AssetManager.cs" />
@@ -61,7 +62,6 @@
     <Compile Include="code\Base\Game.cs" />
     <Compile Include="code\Entities\Limb.cs" />
     <Compile Include="code\Base\Utilities.cs" />
-    <Compile Include="code\Base\Matrix.cs" />
     <Compile Include="code\States\IOwnedByAState.cs" />
     <Compile Include="code\States\LevelEditorState.cs" />
     <Compile Include="code\States\MenuState.cs" />
@@ -72,8 +72,6 @@
     <Compile Include="code\Entities\Segment.cs" />
     <Compile Include="code\UI\UI.cs" />
     <Compile Include="code\UI\UIElement.cs" />
-    <Compile Include="code\Base\Vector.cs" />
-    <Compile Include="code\Base\Vector2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
