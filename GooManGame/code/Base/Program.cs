@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using static GooManGame.Debug;
 
 namespace GooManGame {
     class Program {
         static void Main(string[] args) {
             Game.Preload();
+            Raise("Starting game.");
             Game.Instance.Start();
         }
     }

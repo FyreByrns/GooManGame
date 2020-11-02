@@ -1,4 +1,6 @@
-﻿namespace GooManGame {
+﻿using static GooManGame.Debug;
+
+namespace GooManGame {
 	/// <summary>
 	/// Singleton, manages the main loop.
 	/// </summary>
@@ -8,7 +10,10 @@
 		/// </summary>
 		public static Game Instance {
 			get {
-				if (_instance == null) _instance = new Game();
+				if (_instance == null) {
+					Raise("No game instance found, creating a new one.");
+					_instance = new Game();
+				}
 				return _instance;
 			}
 		}
@@ -18,9 +23,13 @@
 		/// Load configs and assets.
 		/// </summary>
 		public static void Preload() {
+			Raise("Beginning preload.");
 			IO.LoadConfig();
+			Raise("Loaded config.");
 			AssetManager.Setup();
+			Raise("Loaded assets.");
 			Instance.Construct(IO.ScreenWidth, IO.ScreenHeight, IO.ScreenScale, IO.ScreenScale, IO.FPSLock);
+			Raise("Constructed game instance.");
 		}
 
 		/// <summary>
