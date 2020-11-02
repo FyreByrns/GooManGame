@@ -5,6 +5,9 @@ using System.IO;
 using PixelEngine;
 
 namespace GooManGame {
+    /// <summary>
+    /// State of an input.
+    /// </summary>
     public enum InputState {
         None = 0,
 
@@ -18,11 +21,27 @@ namespace GooManGame {
     /// Responsible for resolution, language, keybindings etc.
     /// </summary>
     public static class IO {
-        public static string DataPath = "data/";
+		#region paths and defaults
+		/// <summary>
+		/// Relative path from executable to data files.
+		/// </summary>
+		public static string DataPath = "data/";
+        /// <summary>
+        /// Relative path within data to config files.
+        /// </summary>
         public static string ConfigPath => DataPath + "config/";
+        /// <summary>
+        /// Relative path within assets to asset files.
+        /// </summary>
         public static string AssetsPath => DataPath + "assets/";
 
+        /// <summary>
+        /// Path to screen config.
+        /// </summary>
         static string iniScreenPath => ConfigPath + "screen.ini";
+        /// <summary>
+        /// Default screen config values.
+        /// </summary>
         static string[] iniScreenDefault = {
             "order: Screen Width, Screen Height, Screen Pixel Scale, FPS Lock",
             "300",
@@ -31,7 +50,13 @@ namespace GooManGame {
             "60"
         };
 
+        /// <summary>
+        /// Path to keybinding config.
+        /// </summary>
         static string iniKeybindsPath => ConfigPath + "keybinds.ini";
+        /// <summary>
+        /// Default keybinds.
+        /// </summary>
         static string[] iniKeybindsDefault = {
             "format: input name|key name",
             "up|Up",
@@ -44,27 +69,44 @@ namespace GooManGame {
             "shift|Shift"
         };
 
+        /// <summary>
+        /// Path to mousebinding config.
+        /// </summary>
         static string iniMousebindsPath => ConfigPath + "mousebinds.ini";
+        /// <summary>
+        /// Default mousebinds.
+        /// </summary>
         static string[] iniMousebindsDefault = {
             "leftclick|Left",
             "rightclick|Right",
             "middleclick|Middle",
         };
 
+        /// <summary>
+        /// Path to multibinding config.
+        /// </summary>
         static string iniMultibindsPath => ConfigPath + "multibinds.ini";
+        /// <summary>
+        /// Default multibinds.
+        /// </summary>
         static string[] iniMultibindsDefault = {
             "controlleftclick|leftclick JustPressed,control Held",
             "shiftleftclick|leftclick JustPressed,shift Held",
             "controlrightclick|rightclick JustPressed,control Held",
             "shiftrightclick|rightclick JustPressed,shift Held"
         };
+		#endregion paths and defaults
 
-        public static int ScreenWidth = 600;
+		public static int ScreenWidth = 600;
         public static int ScreenHeight = 350;
         public static int ScreenScale = 4;
         public static int FPSLock = 60;
 
-        public static Dictionary<string, List<Key>> Keybinds = new Dictionary<string, List<Key>>();
+		#region keybinds
+		public static Dictionary<string, List<Key>> Keybinds = new Dictionary<string, List<Key>>();
+        /// <summary>
+        /// Add keybindings by name.
+        /// </summary>
         public static void AddKeybind(string name, params Key[] keys) {
             if (!Keybinds.ContainsKey(name))
                 Keybinds[name] = new List<Key>();
@@ -72,14 +114,21 @@ namespace GooManGame {
             foreach (Key key in keys)
                 Keybinds[name].Add(key);
         }
+        /// <summary>
+        /// Remove keys from a keybinding by name.
+        /// </summary>
         public static void RemoveKeybind(string name, params Key[] keys) {
             if (!Keybinds.ContainsKey(name)) return;
 
             foreach (Key key in keys)
                 Keybinds[name].Remove(key);
         }
-
-        public static Dictionary<string, List<Mouse>> Mousebinds = new Dictionary<string, List<Mouse>>();
+		#endregion keybinds
+		#region mousebinds
+		public static Dictionary<string, List<Mouse>> Mousebinds = new Dictionary<string, List<Mouse>>();
+        /// <summary>
+        /// Add mousebinds by name.
+        /// </summary>
         public static void AddMousebind(string name, params Mouse[] mice) {
             if (!Mousebinds.ContainsKey(name))
                 Mousebinds[name] = new List<Mouse>();
@@ -87,14 +136,18 @@ namespace GooManGame {
             foreach (Mouse mouse in mice)
                 Mousebinds[name].Add(mouse);
         }
+        /// <summary>
+        /// Remove mousebinds by name.
+        /// </summary>
         public static void RemoveMousebind(string name, params Mouse[] mice) {
             if (!Mousebinds.ContainsKey(name)) return;
 
             foreach (Mouse mouse in mice)
                 Mousebinds[name].Remove(mouse);
         }
-
-        public static Dictionary<string, List<string[]>> Multibinds = new Dictionary<string, List<string[]>>();
+		#endregion mousebinds
+		#region multibinds
+		public static Dictionary<string, List<string[]>> Multibinds = new Dictionary<string, List<string[]>>();
         /// <param name="conditions">[input name] [SPACE] [InputState]</param>
         public static void AddMultibind(string name, params string[] conditions) {
             if (!Multibinds.ContainsKey(name))
@@ -102,8 +155,12 @@ namespace GooManGame {
 
             Multibinds[name].Add(conditions);
         }
+		#endregion multibinds
 
-        public static bool InputInState(string input, InputState state) {
+        /// <summary>
+        /// Interrogate the state of an input by name.
+        /// </summary>
+		public static bool InputInState(string input, InputState state) {
             // Check keybinds
             if (Keybinds.ContainsKey(input))
                 foreach (Key key in Keybinds[input])
