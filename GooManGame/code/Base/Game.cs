@@ -38,6 +38,11 @@ namespace GooManGame {
 			Raise("Constructed game instance.");
 		}
 
+		public override void OnCreate() {
+			base.OnCreate();
+			currentScene = new sceneMainMenu();
+		}
+
 		/// <summary>
 		/// Called every frame.
 		/// </summary>
@@ -45,8 +50,8 @@ namespace GooManGame {
 			base.OnUpdate(elapsed);
 
 			// update current scene
-			if(currentScene!=null)
-			currentScene.Update(elapsed);
+			if (currentScene != null)
+				currentScene.Update(elapsed);
 		}
 
 		Game() { }
