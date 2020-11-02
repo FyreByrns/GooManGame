@@ -1,4 +1,6 @@
-﻿namespace GooManGame {
+﻿using PixelEngine;
+
+namespace GooManGame {
 	/// <summary>
 	/// A 2D vector of structures. Only works properly with numeric types.
 	/// </summary>
@@ -99,6 +101,11 @@
 
 		public Vector2<TCast> Cast<TCast>() where TCast : struct =>
 			new Vector2<TCast>((TCast)(dynamic)x, (TCast)(dynamic)y);
+
+		public static implicit operator Point(Vector2<T> v) {
+			Vector2<int> vi = v.Cast<int>();
+			return new Point(vi.x, vi.y);
+		}
 		#endregion operators
 		#region constructors
 		public Vector2() { }
