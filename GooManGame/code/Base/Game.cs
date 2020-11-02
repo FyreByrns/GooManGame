@@ -1,4 +1,5 @@
-﻿using static GooManGame.Debug;
+﻿using GooManGame.code.Base;
+using static GooManGame.Debug;
 
 namespace GooManGame {
 	/// <summary>
@@ -20,6 +21,11 @@ namespace GooManGame {
 		static Game _instance;
 
 		/// <summary>
+		/// Current game scene.
+		/// </summary>
+		public Scene currentScene;
+
+		/// <summary>
 		/// Load configs and assets.
 		/// </summary>
 		public static void Preload() {
@@ -37,6 +43,10 @@ namespace GooManGame {
 		/// </summary>
 		public override void OnUpdate(float elapsed) {
 			base.OnUpdate(elapsed);
+
+			// update current scene
+			if(currentScene!=null)
+			currentScene.Update(elapsed);
 		}
 
 		Game() { }
