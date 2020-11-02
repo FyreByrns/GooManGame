@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="code\Base\IUpdateable.cs" />
+    <Compile Include="code\Base\Scene.cs" />
     <Compile Include="code\Base\Vector2.cs" />
     <Compile Include="code\IO\AssetManager.cs" />
     <Compile Include="code\IO\Debug.cs" />
