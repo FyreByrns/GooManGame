@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 
 namespace GooManGame {
+    /// <summary>
+    /// Asynchronous debugging to console.
+    /// </summary>
     public static class Debug {
         static BlockingCollection<Message> messages = new BlockingCollection<Message>();
 
@@ -22,10 +22,19 @@ namespace GooManGame {
             });
         }
 
+        /// <summary>
+        /// Raise a regular message.
+        /// </summary>
         public static void Raise(string message) =>
             messages.Add(new Message() { message = message, colour = ConsoleColor.White });
+        /// <summary>
+        /// Raise a warning message.
+        /// </summary>
         public static void RaiseWarning(string message) =>
             messages.Add(new Message() { colour = ConsoleColor.Yellow, message = message });
+        /// <summary>
+        /// Raise an error message.
+        /// </summary>
         public static void RaiseError(string error) =>
             messages.Add(new Message() { colour = ConsoleColor.Red, message = error });
 
