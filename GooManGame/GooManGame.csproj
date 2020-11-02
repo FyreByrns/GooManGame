@@ -49,29 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="code\Base\Vector2.cs" />
-    <Compile Include="code\Entities\Camera.cs" />
-    <Compile Include="code\Entities\Crawler.cs" />
     <Compile Include="code\IO\AssetManager.cs" />
     <Compile Include="code\IO\Debug.cs" />
-    <Compile Include="code\Entities\Entity.cs" />
-    <Compile Include="code\Entities\EntityCollection.cs" />
-    <Compile Include="code\Entities\EntityExtensions.cs" />
-    <Compile Include="code\Level.cs" />
-    <Compile Include="code\States\GameState.cs" />
     <Compile Include="code\IO\IO.cs" />
     <Compile Include="code\Base\Game.cs" />
-    <Compile Include="code\Entities\Limb.cs" />
-    <Compile Include="code\Base\Utilities.cs" />
-    <Compile Include="code\States\IOwnedByAState.cs" />
-    <Compile Include="code\States\LevelEditorState.cs" />
-    <Compile Include="code\States\MenuState.cs" />
-    <Compile Include="code\Entities\Player.cs" />
-    <Compile Include="code\States\PlayState.cs" />
     <Compile Include="code\Base\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="code\Entities\Segment.cs" />
-    <Compile Include="code\UI\UI.cs" />
-    <Compile Include="code\UI\UIElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

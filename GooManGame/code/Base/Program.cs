@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GooManGame {
     class Program {
         static void Main(string[] args) {
-            Game.Begin();
+            Game.Preload();
             Game.Instance.Start();
         }
     }
