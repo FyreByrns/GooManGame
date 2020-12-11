@@ -44,9 +44,9 @@ namespace GooManGame {
         /// </summary>
         static string[] iniScreenDefault = {
             "order: Screen Width, Screen Height, Screen Pixel Scale, FPS Lock",
-            "300",
-            "150",
-            "4",
+            "200",
+            "112",
+            "8",
             "60"
         };
 
@@ -97,9 +97,9 @@ namespace GooManGame {
         };
 		#endregion paths and defaults
 
-		public static int ScreenWidth = 600;
-        public static int ScreenHeight = 350;
-        public static int ScreenScale = 4;
+		public static int ScreenWidth = 200;
+        public static int ScreenHeight = 112;
+        public static int ScreenScale = 8;
         public static int FPSLock = 60;
 
 		#region keybinds
